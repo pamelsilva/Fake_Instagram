@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fake Instagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container header">
+        <div id="logo">
+          <img src="/img/logo.png" />
+        </div>
+        <div class="busca">
+          <form>
+            <input type="search" class="search" placeholder="buscar usuarios" />
+          </form>
+        </div>
+        <nav>
+          <a href="/publicar">
+            <img
+              src="/img/icons/plus.svg"
+              alt="Adicionar Publicação"
+              title="Adicionar Publicação"
+            />
+          </a>
+          <a href="/home">
+            <img src="/img/icons/home.svg" />
+          </a>
+          <a href="">
+            <div class="avatar-content">
+              <img class="avatar" src="/img/avatar-example.png" />
+              <b>Nati Lira</b>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main class="container content">
+      <% publicacoes.forEach( publicacao => { %>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <img class="avatar" src="/img/avatar-example.png" />
+            <b><%= publicacao.Usuario.nome %></b>
+          </div>
+          <img src="/img/icons/more-vertical.svg" />
+        </div>
+        <div class="card-img">
+          <img src="/posts/<%= publicacao.Fotos[0].imagem %>" />
+        </div>
+        <div class="card-body">
+          <div class="card-itens">
+            <div class="likes">
+              <img src="/img/icons/heart.svg" />
+              <b>1 likes</b>
+            </div>
+            <b>Postado no dia: <%= publicacao.created_at %></b>
+          </div>
+          <div class="card-comments">
+            <p><b>gabs</b>que fome</p>
+          </div>
+        </div>
+        <form class="form-comments" action="/comentar" method="post">
+          <input type="text" hidden name="postId" value="" />
+          <input
+            type="text"
+            placeholder="Adicione um comentário..."
+            name="description"
+          />
+          <button type="submit">Publicar</button>
+        </form>
+      </div>
+      <!--Fim do foreach-->
+      <% }) %>
+    </main>
+  </body>
+</html>
